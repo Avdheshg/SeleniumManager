@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 
 public class Program
@@ -28,23 +29,42 @@ public class Program
         //FirefoxDriver driver = new FirefoxDriver(service, options, commandTimeout);
 
         // ******** CHROME  **********************
-        // Set up the FirefoxDriverService
         //ChromeDriverService service = ChromeDriverService.CreateDefaultService("\"C:\\Users\\AvdueshGautam\\Desktop\\C#\\SeleniumManager\"", "chromedriver.exe");
-        ChromeDriverService service = ChromeDriverService.CreateDefaultService("C:\\Users\\AvdueshGautam\\Desktop\\C#\\SeleniumManager");
-        //service.IsRunning = false;
-        //service.DriverServiceExecutableName = "chromedriver.exe";
+        //ChromeDriverService service = ChromeDriverService.CreateDefaultService("C:\\Users\\AvdueshGautam\\Desktop\\C#\\SeleniumManager");
 
-        // Set up the FirefoxOptions
-        ChromeOptions options = new ChromeOptions();
-        // Add more options as needed
+        ////service.DriverServicePath=
+        ////service.IsRunning = false;
+        ////service.DriverServiceExecutableName = "chromedriver.exe";
+
+        //ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+        //var serviceUrl = service.ServiceUrl;
+        //ChromeOptions options = new ChromeOptions();
+        ////// Add more options as needed
+        //options.AddArgument("--start-maximized"); // Start browser maximized
+
+        ////// Set the command timeout to 60 seconds
+        //TimeSpan commandTimeout = TimeSpan.FromSeconds(60);
+
+        ////// Initialize the FirefoxDriver with the service, options, and commandTimeout
+        //ChromeDriver driver = new ChromeDriver(service, options, commandTimeout);
+
+        // ******** Edge  **********************
+        // Create the Edge driver service
+        EdgeDriverService service = EdgeDriverService.CreateDefaultService();
+        var serviceUrl = service.ServiceUrl;
+
+        // Set up Edge options (add more options as needed)
+        EdgeOptions options = new EdgeOptions();
         options.AddArgument("--start-maximized"); // Start browser maximized
 
         // Set the command timeout to 60 seconds
         TimeSpan commandTimeout = TimeSpan.FromSeconds(60);
 
-        // Initialize the FirefoxDriver with the service, options, and commandTimeout
-        ChromeDriver driver = new ChromeDriver(service, options, commandTimeout);
+        // Initialize the EdgeDriver with the service, options, and commandTimeout
+        EdgeDriver driver = new EdgeDriver(service, options, commandTimeout);
 
-        //driver.Navigate().GoToUrl("www.google.com");
+        // Now you can use the 'driver' object to interact with the Edge browser
+        driver.Navigate().GoToUrl("https://www.google.com");
+
     }
 }
